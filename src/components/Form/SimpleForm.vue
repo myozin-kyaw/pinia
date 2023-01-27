@@ -3,36 +3,56 @@
         <h1>Simple Form</h1>
         <div>
             <label for="">Text Input</label>
-            <input type="text" name="" id="">
-        </div>
-        <div>
-            <label for="">Text Input</label>
-            <input type="text" name="" id="">
+            <input type="text" v-model="text">
         </div>
         <div>
             <label for="">Select box</label>
-            <select>
-                <option value="">Value 1</option>
-                <option value="">Value 2</option>
-                <option value="">Value 3</option>
+            <select v-model="selectBox">
+                <option value="1">Value 1</option>
+                <option value="2">Value 2</option>
+                <option value="3">Value 3</option>
             </select>
         </div>
         <div>
             <label for="">Radio</label>
-            <input type="radio" name="" id="">A
-            <input type="radio" name="" id="">B
-            <input type="radio" name="" id="">C
+            <input type="radio" v-model="radio" value="A">A
+            <input type="radio" v-model="radio" value="B">B
+            <input type="radio" v-model="radio" value="C">C
+        </div>
+        <div>
+            <label for="">Radio</label>
+            <input type="checkbox" v-model="checkbox" value="A">A
+            <input type="checkbox" v-model="checkbox" value="B">B
+            <input type="checkbox" v-model="checkbox" value="C">C
+        </div>
+
+        <div class="json" v-if="json">
+            text: {{ text }}
         </div>
     </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref } from "vue-demi";
 
-}
+const text = ref()
+const selectBox = ref()
+const radio = ref()
+const checkbox = ref()
+const json = ref({
+    'text': text.value,
+    'selectBox': selectBox.value,
+    'radio': radio.value,
+    'checkbox': checkbox.value
+})
 </script>
 
 <style scoped> 
+.json {
+    padding: 1rem;
+    background-color: #ccc;
+}
+
 h1 {
     margin: 1rem 0;
 }
@@ -61,7 +81,7 @@ select {
     width: 225px;
 }
 
-input[type = radio] {
+input[type = radio], input[type = checkbox] {
     width: 50px;
 }
 
